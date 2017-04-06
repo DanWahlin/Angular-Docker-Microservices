@@ -1,0 +1,74 @@
+# Run docker-compose build
+# Run docker-compose up
+# Live long and prosper
+
+version: '2'
+
+services:
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    build:
+      context: .
+      dockerfile: .docker/nginx.dockerfile
+    volumes:
+      - ./dist:/usr/share/nginx/html
+    ports:
+      - "80:80"
+      - "443:443"
+
+    networks:
+      - app-network
+
+  node:
+    container_name: nodeapp
+    image: nodeapp
+    build:
+      context: ./microservices/node
+      dockerfile: .docker/node.development.dockerfile
+    volumes:
+      - ./microservices/node:/var/www/angularnoderestfulservice
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - mongodb
+    networks:
+      - app-network
+      
+  #No authentication is provided here - JUST A DEMO! That would absolutely
+  #be needed for a "real" application
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    networks:
+      - app-network
+
+  aspnet:
+    container_name: 'aspnetcoreapp'
+    image: 'aspnetcoreapp'
+    build:
+      context: ./microservices/aspnet_core
+      dockerfile: .docker/aspnetcore.development.dockerfile
+    volumes:
+      - ./microservices/aspnet_core:/var/www/aspnetcoreapp
+    ports:
+     - "5000:5000"
+    depends_on:
+     - "postgres"
+    networks:
+      - app-network
+
+  postgres:
+    container_name: 'postgres'
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: password
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

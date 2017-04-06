@@ -1,0 +1,8 @@
+/var/www/aspnetcoreapp/bin/Debug/netcoreapp1.1/AspNetCorePostgreSQLDockerApp.deps.json
+/var/www/aspnetcoreapp/bin/Debug/netcoreapp1.1/AspNetCorePostgreSQLDockerApp.runtimeconfig.json
+/var/www/aspnetcoreapp/bin/Debug/netcoreapp1.1/AspNetCorePostgreSQLDockerApp.runtimeconfig.dev.json
+/var/www/aspnetcoreapp/bin/Debug/netcoreapp1.1/AspNetCorePostgreSQLDockerApp.dll
+/var/www/aspnetcoreapp/bin/Debug/netcoreapp1.1/AspNetCorePostgreSQLDockerApp.pdb
+/var/www/aspnetcoreapp/obj/Debug/netcoreapp1.1/AspNetCorePostgreSQLDockerApp.AssemblyInfo.cs
+/var/www/aspnetcoreapp/obj/Debug/netcoreapp1.1/AspNetCorePostgreSQLDockerApp.dll
+/var/www/aspnetcoreapp/obj/Debug/netcoreapp1.1/AspNetCorePostgreSQLDockerApp.pdb

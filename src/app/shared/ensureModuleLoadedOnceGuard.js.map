@@ -1,0 +1,1 @@
+{"version":3,"file":"ensureModuleLoadedOnceGuard.js","sourceRoot":"","sources":["ensureModuleLoadedOnceGuard.ts"],"names":[],"mappings":";;AAAA;IAEE,qCAAY,YAAiB;QAC3B,EAAE,CAAC,CAAC,YAAY,CAAC,CAAC,CAAC;YACjB,MAAM,IAAI,KAAK,CAAI,YAAY,CAAC,WAAW,CAAC,IAAI,wEAAqE,CAAC,CAAC;QACzH,CAAC;IACH,CAAC;IAEH,kCAAC;AAAD,CAAC,AARD,IAQC;AARY,kEAA2B"}

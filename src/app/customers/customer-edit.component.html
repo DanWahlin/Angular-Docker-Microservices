@@ -1,0 +1,76 @@
+<div>
+  <header>
+      <h3>
+          <span class="glyphicon glyphicon-user"></span>
+          {{ customer.firstName }} {{ customer.lastName }}
+      </h3>
+  </header>
+  <br />
+  <form [formGroup]="customerForm" (ngSubmit)="submit(customerForm)" class="editForm" novalidate>
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" class="form-control" formControlName="firstName" />
+      <div class="alert alert-danger" [hidden]="customerForm.controls.firstName.untouched || customerForm.controls.firstName.valid">First Name is required</div>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" formControlName="lastName">
+      <div class="alert alert-danger" [hidden]="customerForm.controls.lastName.untouched || customerForm.controls.lastName.valid">Last Name is required</div>
+    </div>
+    <div class="form-group">
+      <label>Gender</label>
+      <br />
+      <div class="radio">
+        <label>
+          <input type="radio" name="gender" formControlName="gender" value="Male" />
+          Male
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="gender" formControlName="gender" value="Female"  /> 
+          Female
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" formControlName="email" />
+      <div class="alert alert-danger" [hidden]="customerForm.controls.email.untouched || customerForm.controls.email.valid">Email is required and must be valid</div>
+    </div>
+    <div class="form-group">
+      <label>Address</label>
+      <input type="text" class="form-control" formControlName="address" />
+      <div class="alert alert-danger" [hidden]="customerForm.controls.address.untouched || customerForm.controls.address.valid">Address is required</div>
+    </div>
+    <div class="form-group">
+      <label>City</label>
+      <input type="text" class="form-control" formControlName="city" />
+      <div class="alert alert-danger" [hidden]="customerForm.controls.city.untouched || customerForm.controls.city.valid">City is required</div>
+    </div>
+    <div class="form-group">
+      <label>State</label>
+      <select class="form-control" formControlName="stateId">
+          <option *ngFor="let state of states" [ngValue]="state.id">{{state.name}}</option>
+      </select>
+    </div>
+    <br />
+
+    <div *ngIf="customer">
+      <div class="alert alert-warning" *ngIf="customer._id && deleteMessageEnabled">
+         Delete Customer?&nbsp;&nbsp;<button class="btn btn-danger" (click)="delete($event)">Yes</button>&nbsp;&nbsp;
+         <button class="btn btn-default" (click)="deleteMessageEnabled = false">No</button>
+      </div>
+      <button class="btn btn-danger" *ngIf="customer._id && !deleteMessageEnabled" (click)="deleteMessageEnabled = true">Delete</button>&nbsp;&nbsp;
+
+      <div class="pull-right" *ngIf="!deleteMessageEnabled">
+        <button class="btn btn-default" (click)="cancel($event)">Cancel</button>&nbsp;&nbsp;
+        <button type="submit" class="btn btn-success" [disabled]="!customerForm.valid">{{ operationText }}</button>
+      </div>
+    </div>
+    <br />
+    <br />
+    <div class="alert alert-danger" *ngIf="errorMessage != null">{{ errorMessage }}</div>
+
+  </form>
+</div>

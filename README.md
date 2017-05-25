@@ -6,7 +6,7 @@ To run the project (development mode):
 
 1. Install Angular CLI: `npm install @angular/cli -g`
 
-1. Run `npm install` at the root of the projet
+1. Run `npm install` at the root of the project
 
 1. Run `npm install` in ./microservices/node
 

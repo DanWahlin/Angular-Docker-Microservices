@@ -1,7 +1,4 @@
 const express       = require('express'),
-    exphbs          = require('express-handlebars'),
-    hbsHelpers      = require('handlebars-helpers'),
-    hbsLayouts      = require('handlebars-layouts'),
     bodyParser      = require('body-parser'),
     cookieParser    = require('cookie-parser'),
     errorhandler    = require('errorhandler'),
@@ -49,7 +46,7 @@ class Server {
         //CORS
         app.use(function(req, res, next) {
             res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, X-XSRF-TOKEN, Content-Type, Accept");
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH');
             next();
         });

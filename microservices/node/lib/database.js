@@ -8,7 +8,10 @@ let   connection = null;
 class Database {
 
     open(callback) {
-        const options = {};
+        var options = {
+            useMongoClient: true,
+            promiseLibrary: global.Promise
+        };
         mongoose.connect(connectionString, options, (err) => {
             if (err) {
                 console.log('mongoose.connect() failed: ' + err);

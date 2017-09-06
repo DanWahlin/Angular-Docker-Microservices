@@ -1,20 +1,16 @@
-FROM microsoft/dotnet:1.1.1-sdk
+FROM microsoft/aspnetcore
 
-MAINTAINER Dan Wahlin, Shayne Boyer
+MAINTAINER Dan Wahlin
 
 ENV ASPNETCORE_URLS=http://*:5000
 
-COPY . /var/www/aspnetcoreapp
+# Run dotnet publish -c Release -o dist 
+COPY ./dist /var/www/aspnetcoreapp
 
 WORKDIR /var/www/aspnetcoreapp
 
-#Install Node
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
-   	&& apt-get install -qqy nodejs
+ENTRYPOINT ["dotnet", "AspNetCorePostgreSQLDockerApp.dll"]
 
-RUN ["npm", "install"]
-
-CMD ["/bin/bash", "-c", "dotnet restore && dotnet run"]
 
 
 

@@ -1,33 +1,27 @@
 using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AspNetCorePostgreSQLDockerApp.Repository;
-using System.IO;
 using Microsoft.Extensions.FileProviders;
-using Swashbuckle.Swagger.Model;
 using Microsoft.Extensions.PlatformAbstractions;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerUI;
+using AspNetCorePostgreSQLDockerApp.Repository;
 
 namespace AspNetCorePostgreSQLDockerApp
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            // Set up configuration sources.
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfiguration Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -51,43 +45,35 @@ namespace AspNetCorePostgreSQLDockerApp
             services.AddTransient<DockerCommandsDbSeeder>();
             services.AddTransient<CustomersDbSeeder>();
 
-            //Nice article by Shayne Boyer here on Swagger:
-            //https://docs.asp.net/en/latest/tutorials/web-api-help-pages-using-swagger.html
-            services.AddSwaggerGen();
-            services.ConfigureSwaggerGen(options =>
+            //https://github.com/domaindrivendev/Swashbuckle.AspNetCore
+            services.AddSwaggerGen(options =>
             {
-                options.SingleApiVersion(new Info
+                options.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
                     Title = "ASP.NET Core Customers API",
-                    Description = "ASP.NET Core Customers Web API documentation",
+                    Description = "ASP.NET Core/Angular Swagger Documentation",
                     TermsOfService = "None",
-                    Contact = new Contact { Name = "Dan Wahlin", Url = "http://twitter.com/danwahlin"},
+                    Contact = new Contact { Name = "Dan Wahlin", Url = "http://twitter.com/danwahlin" },
                     License = new License { Name = "MIT", Url = "https://en.wikipedia.org/wiki/MIT_License" }
                 });
 
-                //Enable following for XML comment support and add "xmlDoc": true to buildOptions in project.json
-
-                //Base app path 
-                //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
-
-                //Set the comments path for the swagger json and ui.
-                //options.IncludeXmlComments(basePath + "\\yourAPI.xml");
+                //Add XML comment document by uncommenting the following
+                // var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "MyApi.xml");
+                // options.IncludeXmlComments(filePath);
 
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
-                              DockerCommandsDbSeeder dockerCommandsDbSeeder, CustomersDbSeeder customersDbSeeder)
+        public void Configure(IApplicationBuilder app, 
+                              IHostingEnvironment env,
+                              DockerCommandsDbSeeder dockerCommandsDbSeeder, 
+                              CustomersDbSeeder customersDbSeeder)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
@@ -98,7 +84,11 @@ namespace AspNetCorePostgreSQLDockerApp
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
-            app.UseSwaggerUi();
+            // Visit http://localhost:5000/swagger
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             //This would need to be locked down as needed (very open right now)
             app.UseCors((corsPolicyBuilder) => 

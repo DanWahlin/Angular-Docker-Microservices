@@ -1,7 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "/root/.nuget/packages"
-    ]
-  }
-}

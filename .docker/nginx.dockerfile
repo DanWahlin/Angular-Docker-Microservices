@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-MAINTAINER Dan Wahlin
+LABEL author="Dan Wahlin" 
 
 # Copy custom nginx config
 COPY ./.docker/nginx.conf /etc/nginx/nginx.conf

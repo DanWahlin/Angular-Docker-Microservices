@@ -1,6 +1,6 @@
 FROM microsoft/aspnetcore
 
-MAINTAINER Dan Wahlin
+LABEL author="Dan Wahlin" 
 
 ENV ASPNETCORE_URLS=http://*:5000
 

@@ -1,6 +1,6 @@
 FROM node:alpine
 
-MAINTAINER Dan Wahlin
+LABEL author="Dan Wahlin" 
 
 WORKDIR /var/www/angularnoderestfulservice
 

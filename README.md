@@ -10,6 +10,8 @@ To run the project (development mode):
 
 1. Run `npm install` in ./microservices/node
 
+1. Move back to the project root
+
 1. Run `ng build`
 
 1. Run `docker-compose build`

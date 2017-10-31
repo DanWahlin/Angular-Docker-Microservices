@@ -2,7 +2,7 @@
 # Run docker-compose up
 # Live long and prosper
 
-version: '2'
+version: '3.1'
 
 services:
 
@@ -66,6 +66,19 @@ services:
     image: postgres
     environment:
       POSTGRES_PASSWORD: password
+    networks:
+      - app-network
+
+  cadvisor:
+    container_name: cadvisor
+    image: google/cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - "8080:8080"
     networks:
       - app-network
 

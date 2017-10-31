@@ -1716,19 +1716,6 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Relational.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational.Design/2.0.0-preview1-final": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "2.0.0-preview1-final",
-          "NETStandard.Library": "2.0.0-preview1-25301-01"
-        },
-        "compile": {
-          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll": {}
-        }
-      },
       "Microsoft.EntityFrameworkCore.Sqlite/2.0.0": {
         "type": "package",
         "dependencies": {
@@ -2774,25 +2761,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
-        }
-      },
-      "Npgsql.EntityFrameworkCore.PostgreSQL.Design/2.0.0-preview1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "2.0.0-preview1-final",
-          "Microsoft.EntityFrameworkCore.Relational": "2.0.0-preview1-final",
-          "Microsoft.EntityFrameworkCore.Relational.Design": "2.0.0-preview1-final",
-          "Microsoft.Extensions.DependencyInjection": "2.0.0-preview1-final",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0-preview1-final",
-          "NETStandard.Library": "1.6.1",
-          "Npgsql": "3.2.2",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.0-preview1"
-        },
-        "compile": {
-          "lib/netstandard1.3/Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll": {}
         }
       },
       "Remotion.Linq/2.1.1": {
@@ -6226,16 +6194,6 @@
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Relational.Design/2.0.0-preview1-final": {
-      "sha512": "3BtBHSgNJaUrj+r5ARBTeRxjMq/og8NdzzdfuyYjwLT6QCX79mCAQ44/MMl5NfwRmPRIerCTUifunQmEZtMQ/w==",
-      "type": "package",
-      "path": "microsoft.entityframeworkcore.relational.design/2.0.0-preview1-final",
-      "files": [
-        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll",
-        "microsoft.entityframeworkcore.relational.design.2.0.0-preview1-final.nupkg.sha512",
-        "microsoft.entityframeworkcore.relational.design.nuspec"
-      ]
-    },
     "Microsoft.EntityFrameworkCore.Sqlite/2.0.0": {
       "sha512": "Tc3Dbjw86JXUNGl6UiB+Ritj0uWyjhi6vXBxK/aa0SNQeX06eh8zQoyhu2tSmj45aS6nOIrmPkkXQa41gQ3jKQ==",
       "type": "package",
@@ -7711,17 +7669,6 @@
         "lib/netstandard2.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll",
         "npgsql.entityframeworkcore.postgresql.2.0.0.nupkg.sha512",
         "npgsql.entityframeworkcore.postgresql.nuspec"
-      ]
-    },
-    "Npgsql.EntityFrameworkCore.PostgreSQL.Design/2.0.0-preview1": {
-      "sha512": "sb/3EYXPYHVBlrTwD3WsXMp7ndavMYVG3F6iGa8PT+ZsQ6DmTvfugHVQtU90K1jLjFhJi59F5IH3P9ypPi4dpg==",
-      "type": "package",
-      "path": "npgsql.entityframeworkcore.postgresql.design/2.0.0-preview1",
-      "files": [
-        "lib/net46/Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll",
-        "lib/netstandard1.3/Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll",
-        "npgsql.entityframeworkcore.postgresql.design.2.0.0-preview1.nupkg.sha512",
-        "npgsql.entityframeworkcore.postgresql.design.nuspec"
       ]
     },
     "Remotion.Linq/2.1.1": {
@@ -12742,7 +12689,6 @@
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 2.0.0",
-      "Npgsql.EntityFrameworkCore.PostgreSQL.Design >= 2.0.0-preview1",
       "Swashbuckle.AspNetCore >= 1.0.0"
     ]
   },
@@ -12801,10 +12747,6 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "2.0.0"
-          },
-          "Npgsql.EntityFrameworkCore.PostgreSQL.Design": {
-            "target": "Package",
-            "version": "2.0.0-preview1"
           }
         },
         "imports": [
@@ -12815,17 +12757,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Microsoft.Extensions.Primitives 2.0.0-preview1-final depends on System.Runtime.CompilerServices.Unsafe (>= 4.4.0-preview1-25219-04) but System.Runtime.CompilerServices.Unsafe 4.4.0-preview1-25219-04 was not found. An approximate best match of System.Runtime.CompilerServices.Unsafe 4.4.0-preview1-25305-02 was resolved.",
-      "libraryId": "System.Runtime.CompilerServices.Unsafe",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    }
-  ]
+  }
 }

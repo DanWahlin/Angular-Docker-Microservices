@@ -37,3 +37,8 @@ export interface IPagedResults<T> {
     totalRecords: number;
     results: T;
 }
+
+export interface ICustomerResponse {
+    status: boolean;
+    customer: ICustomer;
+}

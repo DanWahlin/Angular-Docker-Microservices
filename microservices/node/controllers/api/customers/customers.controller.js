@@ -38,11 +38,9 @@ class CustomersController {
                 console.log('*** getCustomersPage error: ' + util.inspect(err));
                 res.json(null);
             } else {
+                res.setHeader('X-InlineCount', data.count);
                 console.log('*** getCustomersPage ok');
-                res.json({
-                    results: data.customers,
-                    totalRecords: data.count
-                });
+                res.json(data.customers);
             }
         });
     }

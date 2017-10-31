@@ -1,25 +1,16 @@
+FROM microsoft/aspnetcore-build as publish
+WORKDIR /publish
+COPY AspNetCorePostgreSQLDockerApp.csproj .
+RUN dotnet restore
+COPY . .
+RUN dotnet publish --output ./out
+
 FROM microsoft/aspnetcore
-
 LABEL author="Dan Wahlin" 
-
-ENV ASPNETCORE_URLS=http://*:5000
-
-# Run dotnet publish -c Release -o dist 
-COPY ./dist /var/www/aspnetcoreapp
-
 WORKDIR /var/www/aspnetcoreapp
-
+COPY --from=publish /publish/out .
+ENV ASPNETCORE_URLS=http://*:5000
 ENTRYPOINT ["dotnet", "AspNetCorePostgreSQLDockerApp.dll"]
-
-
-
-
-
-
-
-
-
-
 
 
 # Build the image:

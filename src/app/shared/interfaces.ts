@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 
 export interface ICustomer {
-    _id?: string;
+    id?: string;
     firstName: string;
     lastName: string;
     email: string;
@@ -17,6 +17,7 @@ export interface ICustomer {
 }
 
 export interface IState {
+    id?: string;
     abbreviation: string;
     name: string;
 }

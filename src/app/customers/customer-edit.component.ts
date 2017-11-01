@@ -20,7 +20,8 @@ export class CustomerEditComponent implements OnInit {
     address: '',
     email: '',
     city: '',
-    zip: 0
+    zip: 0,
+    state: { id: '0', abbreviation: '', name: ''}
   };
   states: IState[];
   errorMessage: string;
@@ -62,7 +63,7 @@ export class CustomerEditComponent implements OnInit {
         email:      [this.customer.email, [Validators.required, ValidationService.emailValidator]],
         address:    [this.customer.address, Validators.required],
         city:       [this.customer.city, Validators.required],
-        stateId:    [this.customer.stateId, Validators.required]
+        stateId:    [this.customer.state.id, Validators.required]
       });
   }
 
@@ -72,13 +73,13 @@ export class CustomerEditComponent implements OnInit {
   
   submit({ value, valid }: { value: ICustomer, valid: boolean }) {
       
-      value._id = this.customer._id;
+      value.id = this.customer.id;
       value.zip = this.customer.zip || 0; 
       // var customer: ICustomer = {
-      //   _id: this.customer._id,
+      //   id: this.customer.id,
       // };
 
-      if (value._id) {
+      if (value.id) {
 
         this.dataService.updateCustomer(value)
           .subscribe((customer: ICustomer) => {
@@ -114,7 +115,7 @@ export class CustomerEditComponent implements OnInit {
 
   delete(event: Event) {
     event.preventDefault();
-    this.dataService.deleteCustomer(this.customer._id)
+    this.dataService.deleteCustomer(this.customer.id)
         .subscribe((status: boolean) => {
           if (status) {
             this.router.navigate(['/customers']);

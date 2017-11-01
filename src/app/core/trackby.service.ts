@@ -6,7 +6,7 @@ import { ICustomer } from '../shared/interfaces';
 export class TrackByService {
   
   customer(index: number, customer: ICustomer) {
-    return customer._id;
+    return customer.id;
   }
   
 }

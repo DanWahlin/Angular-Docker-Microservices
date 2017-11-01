@@ -96,6 +96,7 @@ namespace AspNetCorePostgreSQLDockerApp
                 corsPolicyBuilder.AllowAnyOrigin();
                 corsPolicyBuilder.AllowAnyMethod();
                 corsPolicyBuilder.AllowAnyHeader();
+                corsPolicyBuilder.WithExposedHeaders("X-InlineCount");
             });
 
             app.UseMvc(routes =>

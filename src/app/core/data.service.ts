@@ -13,10 +13,10 @@ import { ICustomer, IOrder, IState,
 @Injectable()
 export class DataService {
   
-    //Call Node.js 'microservice'
-    baseUrl: string = 'http://localhost:3000/api/customers';
     //Call ASP.NET Core 'microservice'
-    statesUrl: string = 'http://localhost:5000/api/states';
+    baseUrl: string = 'http://localhost:5000/api/customers';
+    //Call Node.js 'microservice'
+    statesUrl: string = 'http://localhost:3000/api/states';
 
     constructor(private http: HttpClient) { }
     
@@ -35,7 +35,7 @@ export class DataService {
                 {observe: 'response'})
                    .map(res => {
                         //Need to observe response in order to get to this header (see {observe: 'response'} above)
-                        const totalRecords = +res.headers.get('x-inlinecount');
+                        const totalRecords = +res.headers.get('X-InlineCount');
                         let customers = res.body as ICustomer[];
                         this.calculateCustomersOrderTotal(customers);
                         return {
@@ -61,7 +61,7 @@ export class DataService {
     }
    
     updateCustomer(customer: ICustomer) : Observable<ICustomer> {
-        return this.http.put<ICustomerResponse>(this.baseUrl + '/' + customer._id, customer) 
+        return this.http.put<ICustomerResponse>(this.baseUrl + '/' + customer.id, customer) 
                    .map((data) => {
                        console.log('updateCustomer status: ' + data.status);
                        return data.customer;

@@ -8,3 +8,13 @@
 /var/www/aspnetcoreapp/obj/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.AssemblyInfo.cs
 /var/www/aspnetcoreapp/obj/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.dll
 /var/www/aspnetcoreapp/obj/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.pdb
+/Users/danwahlin/Dropbox/Projects/GitHub/Angular-Docker-Microservices/microservices/aspnet_core/bin/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.deps.json
+/Users/danwahlin/Dropbox/Projects/GitHub/Angular-Docker-Microservices/microservices/aspnet_core/bin/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.runtimeconfig.json
+/Users/danwahlin/Dropbox/Projects/GitHub/Angular-Docker-Microservices/microservices/aspnet_core/bin/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.runtimeconfig.dev.json
+/Users/danwahlin/Dropbox/Projects/GitHub/Angular-Docker-Microservices/microservices/aspnet_core/bin/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.dll
+/Users/danwahlin/Dropbox/Projects/GitHub/Angular-Docker-Microservices/microservices/aspnet_core/bin/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.pdb
+/Users/danwahlin/Dropbox/Projects/GitHub/Angular-Docker-Microservices/microservices/aspnet_core/obj/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.csproj.CoreCompileInputs.cache
+/Users/danwahlin/Dropbox/Projects/GitHub/Angular-Docker-Microservices/microservices/aspnet_core/obj/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.AssemblyInfoInputs.cache
+/Users/danwahlin/Dropbox/Projects/GitHub/Angular-Docker-Microservices/microservices/aspnet_core/obj/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.AssemblyInfo.cs
+/Users/danwahlin/Dropbox/Projects/GitHub/Angular-Docker-Microservices/microservices/aspnet_core/obj/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.dll
+/Users/danwahlin/Dropbox/Projects/GitHub/Angular-Docker-Microservices/microservices/aspnet_core/obj/Debug/netcoreapp2.0/AspNetCorePostgreSQLDockerApp.pdb

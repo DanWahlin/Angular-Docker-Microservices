@@ -57,11 +57,11 @@
     <br />
 
     <div *ngIf="customer">
-      <div class="alert alert-warning" *ngIf="customer._id && deleteMessageEnabled">
+      <div class="alert alert-warning" *ngIf="customer.id && deleteMessageEnabled">
          Delete Customer?&nbsp;&nbsp;<button class="btn btn-danger" (click)="delete($event)">Yes</button>&nbsp;&nbsp;
          <button class="btn btn-default" (click)="deleteMessageEnabled = false">No</button>
       </div>
-      <button class="btn btn-danger" *ngIf="customer._id && !deleteMessageEnabled" (click)="deleteMessageEnabled = true">Delete</button>&nbsp;&nbsp;
+      <button class="btn btn-danger" *ngIf="customer.id && !deleteMessageEnabled" (click)="deleteMessageEnabled = true">Delete</button>&nbsp;&nbsp;
 
       <div class="pull-right" *ngIf="!deleteMessageEnabled">
         <button class="btn btn-default" (click)="cancel($event)">Cancel</button>&nbsp;&nbsp;

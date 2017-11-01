@@ -18,7 +18,7 @@
                         <tr *ngFor="let customer of customers;trackBy:trackby.customer">
                             <td><img src="assets/images/{{ customer.gender | lowercase }}.png"
                                     class="card-image" alt="Customer Image" /></td>
-                            <td><a [routerLink]="['/customers',customer._id]">{{ customer.firstName | capitalize }}</a></td>
+                            <td><a [routerLink]="['/customers',customer.id]">{{ customer.firstName | capitalize }}</a></td>
                             <td>{{ customer.lastName | capitalize }}</td>
                             <td>{{ customer.address }}</td>
                             <td>{{ customer.city | trim }}</td>

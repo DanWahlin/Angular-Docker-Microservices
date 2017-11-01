@@ -184,6 +184,7 @@ namespace AspNetCorePostgreSQLDockerApp.Repository
                     Email = nameGenderHost[0] + '.' + nameGenderHost[1] + '@' + nameGenderHost[3],
                     Address = addresses[i],
                     City = cityState[0],
+                    StateId = state.Id,
                     State = state,
                     Zip = zip + i,
                     Gender = nameGenderHost[2],

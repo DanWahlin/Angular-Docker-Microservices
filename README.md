@@ -19,3 +19,6 @@ To run the project (development mode):
 1. Run `docker-compose up`
 
 1. Navigate to http://localhost
+
+1. To see your container CPU utilization, memory, etc. visit the
+cAdvisor URL: http://localhost:8080

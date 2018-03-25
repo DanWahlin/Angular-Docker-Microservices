@@ -6,10 +6,10 @@ const express       = require('express'),
     morgan          = require('morgan'),
     favicon         = require('serve-favicon'),
     
-    router          = require('./routes/router'),
     database        = require('./lib/database'),
     seeder          = require('./lib/dbSeeder'),
     app             = express(),
+    router          = require('express-convention-routes'),
     port            = 3000;
 
 class Server {
@@ -85,7 +85,16 @@ class Server {
     }
 
     initRoutes() {
-        router.load(app, './controllers');
+        router.load(app, {
+          //Defaults to "./controllers" but showing for example
+          routesDirectory: './controllers', 
+      
+          //Root directory where your server is running
+          rootDirectory: __dirname,
+          
+          //Do you want the created routes to be shown in the console?
+          logRoutes: true
+        });
     }
 
 }

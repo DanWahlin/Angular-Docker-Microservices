@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/map'; 
-import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { ICustomer, IOrder, IState, 
          IPagedResults, ICustomerResponse } from '../shared/interfaces';
@@ -22,18 +20,20 @@ export class DataService {
     
     getCustomers() : Observable<ICustomer[]> {
         return this.http.get<ICustomer[]>(this.baseUrl)
-                   .map((customers: ICustomer[]) => {
+                .pipe(
+                   map((customers: ICustomer[]) => {
                        this.calculateCustomersOrderTotal(customers);
                        return customers;
-                   })
-                   .catch(this.handleError);
+                   }),
+                   catchError(this.handleError)
+                );
     }
 
     getCustomersPage(page: number, pageSize: number) : Observable<IPagedResults<ICustomer[]>> {
         return this.http.get<ICustomer[]>(
-                `${this.baseUrl}/page/${page}/${pageSize}`, 
-                {observe: 'response'})
-                   .map(res => {
+                `${this.baseUrl}/page/${page}/${pageSize}`, {observe: 'response'})
+                .pipe(
+                   map(res => {
                         //Need to observe response in order to get to this header (see {observe: 'response'} above)
                         const totalRecords = +res.headers.get('X-InlineCount');
                         let customers = res.body as ICustomer[];
@@ -42,41 +42,52 @@ export class DataService {
                             results: customers,
                             totalRecords: totalRecords
                         };
-                    })
-                    .catch(this.handleError);
+                    }),
+                    catchError(this.handleError)
+                );
     }
     
     getCustomer(id: string) : Observable<ICustomer> {
         return this.http.get<ICustomer>(this.baseUrl + '/' + id)
-                   .catch(this.handleError);
+                .pipe(
+                   catchError(this.handleError)
+                );
     }
 
     insertCustomer(customer: ICustomer) : Observable<ICustomer> {
         return this.http.post<ICustomerResponse>(this.baseUrl, customer)
-                   .map((data) => {
+                .pipe(
+                   map((data) => {
                        console.log('insertCustomer status: ' + data.status);
                        return data.customer;
-                   })
-                   .catch(this.handleError);
+                   }),
+                   catchError(this.handleError)
+                );
     }
    
     updateCustomer(customer: ICustomer) : Observable<ICustomer> {
         return this.http.put<ICustomerResponse>(this.baseUrl + '/' + customer.id, customer) 
-                   .map((data) => {
+                .pipe(
+                   map((data) => {
                        console.log('updateCustomer status: ' + data.status);
                        return data.customer;
-                   })
-                   .catch(this.handleError);
+                   }),
+                   catchError(this.handleError)
+                );
     }
 
     deleteCustomer(id: string) : Observable<boolean> {
         return this.http.delete<boolean>(this.baseUrl + '/' + id)
-                   .catch(this.handleError);
+                .pipe(
+                   catchError(this.handleError)
+                );
     }
    
     getStates(): Observable<IState[]> {
         return this.http.get<IState[]>(this.statesUrl)
-                   .catch(this.handleError);
+                .pipe(
+                   catchError(this.handleError)
+                );
     }
 
     calculateCustomersOrderTotal(customers: ICustomer[]) {

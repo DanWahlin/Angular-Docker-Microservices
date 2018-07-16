@@ -1,6 +1,6 @@
 # Angular, Docker and Microservices
 
-Note: If you're using Docker CE on Windows, remove the cAdvisor service defined at the bottom of the
+*NOTE*: If you're using Docker CE on Windows, remove the cAdvisor service defined at the bottom of the
 docker-compose.yml file before running the project. 
 
 To run the project (development mode):

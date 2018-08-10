@@ -1,9 +1,12 @@
-FROM microsoft/aspnetcore-build
+FROM microsoft/dotnet:sdk
 
 LABEL author="Dan Wahlin" 
 
 ENV DOTNET_USE_POLLING_FILE_WATCHER=1
 ENV ASPNETCORE_URLS=http://*:5000
+ENV ASPNETCORE_ENVIRONMENT=development
+
+EXPOSE 5000
 
 WORKDIR /var/www/aspnetcoreapp
 

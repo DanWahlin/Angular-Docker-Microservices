@@ -1,15 +1,17 @@
-FROM microsoft/aspnetcore-build as publish
+FROM microsoft/dotnet:sdk as publish
 WORKDIR /publish
 COPY AspNetCorePostgreSQLDockerApp.csproj .
 RUN dotnet restore
 COPY . .
 RUN dotnet publish --output ./out
 
-FROM microsoft/aspnetcore
+FROM microsoft/dotnet:aspnetcore-runtime
 LABEL author="Dan Wahlin" 
 WORKDIR /var/www/aspnetcoreapp
 COPY --from=publish /publish/out .
 ENV ASPNETCORE_URLS=http://*:5000
+ENV ASPNETCORE_ENVIRONMENT=production
+EXPOSE 5000
 ENTRYPOINT ["dotnet", "AspNetCorePostgreSQLDockerApp.dll"]
 
 
